@@ -3,401 +3,831 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>F. Philibert Andriniriniaimalaza — Docteur-Ingénieur, Chercheur Postdoctoral</title>
+<title>fp-lab concept</title>
 <meta name="description" content="Chercheur postdoctoral en électronique industrielle, systèmes de commande intelligents et énergie renouvelable hybride — ISSTM, Université de Mahajanga.">
+<link rel="canonical" href="https://philibr.github.io/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FAFAF8;
-    --panel:#FFFFFF;
-    --ink:#17181A;
-    --ink-soft:#5B5F66;
-    --ink-faint:#94979E;
-    --line:#E5E4DF;
-    --accent:#1E4FD8;
-    --accent-soft:#E8EDFC;
-    --amber:#A8620E;
-    --amber-soft:#FBF1E4;
+    --ink:#1a1a1a;
+    --ink-soft:#444;
+    --line:#d9d9d9;
+    --link:#0b4fb0;
+    --bg:#ffffff;
+    --muted-bg:#f6f6f4;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  *{ box-sizing:border-box; }
   body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size:18px; line-height:1.7;
     -webkit-font-smoothing:antialiased;
   }
-  .serif{ font-family:'Source Serif 4', Georgia, serif; }
-  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 32px 90px; }
+  a{ color:var(--link); text-decoration:underline; text-underline-offset:2px; }
+  a:hover{ color:#08306b; }
+  h1,h2,h3{ font-family:'Inter',-apple-system,sans-serif; font-weight:600; color:var(--ink); }
 
-  a{ color:inherit; }
-
-  /* ---------- layout ---------- */
-  .shell{ display:flex; min-height:100vh; }
-  .sidebar{
-    width:328px; flex:none;
-    background:var(--panel);
-    border-right:1px solid var(--line);
-    padding:44px 36px;
-    position:sticky; top:0; height:100vh;
-    display:flex; flex-direction:column;
-    overflow:hidden;
+  /* ---------- slim top utility bar (language) ---------- */
+  .util-bar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:8px 32px 0; max-width:920px; margin:0 auto;
   }
-  .sig-curve{
-    position:absolute; left:-30px; top:150px; width:390px; height:180px;
-    opacity:.55; pointer-events:none;
+  .research-logo{
+    display:flex; align-items:center; gap:6px; font-family:'Inter',sans-serif;
+    font-size:10.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ink-soft); border:none; background:none; cursor:pointer; padding:2px 2px;
   }
-  .side-top{ position:relative; z-index:1; }
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.14em;
-    text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:14px;
-    display:flex; align-items:center; gap:8px;
+  .research-logo:hover{ color:var(--ink); }
+  .research-logo.on{ color:var(--ink); }
+  .research-logo svg{ width:16px; height:16px; flex:none; }
+  .research-logo svg circle{ fill:none; stroke:var(--link); stroke-width:1.4; }
+  .research-logo svg ellipse{ fill:none; stroke:var(--link); stroke-width:1.1; opacity:.75; }
+
+  /* ---------- collapsible research/search bar ---------- */
+  .search-bar{
+    display:none; max-width:920px; margin:8px auto 0; padding:0 32px;
   }
-  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
-  .name{
-    font-size:26px; line-height:1.22; font-weight:600; letter-spacing:-.01em; color:var(--ink);
-    margin:0 0 10px;
+  .search-bar.open{ display:block; }
+  .search-bar-row{
+    display:flex; align-items:center; gap:10px;
+    border:1px solid var(--line); border-radius:6px; padding:13px 16px; background:#fff;
   }
-  .role{ font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 3px; }
-  .affil{ font-size:12.5px; color:var(--accent); font-weight:500; }
-
-  nav.side-nav{ margin-top:40px; position:relative; z-index:1; }
-  nav.side-nav ul{ list-style:none; margin:0; padding:0; }
-  nav.side-nav li + li{ margin-top:2px; }
-  nav.side-nav a{
-    display:flex; align-items:baseline; gap:10px;
-    text-decoration:none; font-size:13.5px; color:var(--ink-soft);
-    padding:8px 4px; border-radius:6px; transition:color .15s ease;
+  .search-bar-row:focus-within{ border-color:var(--link); }
+  .search-bar-icon{ width:18px; height:18px; flex:none; }
+  .search-bar-icon circle, .search-bar-icon line{ fill:none; stroke:var(--ink-soft); stroke-width:1.7; stroke-linecap:round; }
+  .search-bar input{
+    flex:1; min-width:0; border:none; outline:none; background:transparent;
+    font-family:'Inter',sans-serif; font-size:15px; color:var(--ink);
   }
-  nav.side-nav a:hover{ color:var(--ink); }
-  nav.side-nav a .idx{ font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-faint); }
+  .search-bar input::placeholder{ color:#9a9a9a; }
+  .search-close{
+    border:none; background:none; cursor:pointer; font-size:17px; line-height:1;
+    color:var(--ink-soft); padding:0 2px; flex:none;
+  }
+  .search-close:hover{ color:var(--ink); }
+  .search-results{
+    margin-top:6px; max-height:300px; overflow-y:auto;
+    border:1px solid var(--line); border-radius:7px; background:#fff;
+  }
+  .search-results:empty{ display:none; border:none; margin-top:0; }
+  .search-item{
+    display:block; width:100%; text-align:left; border:none; background:none; cursor:pointer;
+    padding:10px 12px; font-family:'Source Serif 4', Georgia, serif; font-size:13.5px;
+    line-height:1.45; color:var(--ink); border-top:1px solid var(--line);
+  }
+  .search-item:first-child{ border-top:none; }
+  .search-item:hover{ background:var(--muted-bg); }
+  .search-item-page{
+    display:block; font-family:'Inter',sans-serif; font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--link); margin-bottom:3px;
+  }
+  .search-empty{ padding:11px 12px; font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft); }
+  .search-hit{ background:#fff3b0; }
+  .lang-mini{
+    display:flex; align-items:center; gap:5px; font-family:'Inter',sans-serif;
+    font-size:10.5px; letter-spacing:.03em;
+  }
+  .lang-mini button{
+    border:none; background:none; padding:2px 3px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; color:var(--ink-faint,#999);
+  }
+  .lang-mini button.on{ color:var(--ink); }
+  .lang-mini button:not(.on):hover{ color:var(--link); }
+  .lang-mini .sep{ color:#ccc; font-size:10px; }
 
-  .side-bottom{ margin-top:auto; padding-top:28px; border-top:1px solid var(--line);
-    font-size:12px; color:var(--ink-soft); position:relative; z-index:1; }
-  .side-bottom .row{ display:flex; gap:9px; align-items:flex-start; margin-bottom:9px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; }
-  .side-bottom .row svg{ flex:none; margin-top:2px; opacity:.55; }
-  .side-bottom a{ text-decoration:none; word-break:break-all; }
-  .side-bottom a:hover{ color:var(--accent); }
+  /* ---------- header / top nav ---------- */
+  header.top{ padding:20px 0 0; position:relative; }
+  nav.top-nav{
+    font-family:'Inter',sans-serif; font-size:14px; padding:14px 0;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .fp-logo{
+    display:flex; align-items:center; text-decoration:none; color:var(--ink);
+    flex:none;
+  }
+  .fp-logo-img{ height:34px; width:auto; display:block; }
 
-  .mobile-bar{ display:none; }
+  .nav-right{ display:flex; align-items:center; gap:18px; flex:1; justify-content:flex-end; min-width:0; }
 
-  main{ flex:1; min-width:0; padding:64px 64px 100px; max-width:900px; }
+  ul.nav-links{ list-style:none; display:flex; flex-wrap:nowrap; gap:0; margin:0; padding:0; overflow:hidden; }
+  ul.nav-links li{ display:flex; align-items:center; white-space:nowrap; }
+  ul.nav-links li:not(:first-child)::before{ content:"·"; margin:0 12px; color:#bbb; }
+  ul.nav-links a{ text-decoration:none; color:var(--ink); }
+  ul.nav-links a:hover{ color:var(--link); text-decoration:underline; }
+  ul.nav-links a.active{ color:var(--link); font-weight:600; }
 
-  section{ margin-bottom:76px; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease; }
-  section.in{ opacity:1; transform:none; }
-  section:target{ scroll-margin-top:40px; }
-
-  .sec-head{ display:flex; align-items:center; gap:14px; margin-bottom:28px; }
-  .sec-num{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint); }
-  .sec-title{ font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
-  .sec-rule{ flex:1; height:1px; background:var(--line); }
-
-  .lede{ font-size:17.5px; line-height:1.72; color:#33353A; max-width:66ch; }
-  .lede + .lede{ margin-top:16px; }
-  .seeking{
-    margin-top:26px; padding:16px 18px; background:var(--accent-soft); border-left:2px solid var(--accent);
-    border-radius:4px; font-size:13.5px; color:#1B3AA0; line-height:1.55;
+  .menu-btn{
+    display:none; flex:none; align-items:center; justify-content:center;
+    width:34px; height:34px; border:1px solid var(--line); border-radius:6px; background:#fff;
+    cursor:pointer; padding:0;
+  }
+  .menu-btn span, .menu-btn::before, .menu-btn::after{
+    content:""; display:block; width:16px; height:1.6px; background:var(--ink); margin:2.5px auto; transition:transform .15s ease, opacity .15s ease;
   }
 
-  .stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:36px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
-  .stat{ background:var(--panel); padding:18px 16px; }
-  .stat b{ display:block; font-family:'Source Serif 4',serif; font-size:26px; font-weight:600; color:var(--ink); }
-  .stat span{ display:block; font-size:11px; color:var(--ink-soft); margin-top:4px; line-height:1.4; }
+  .mobile-panel{
+    display:none; position:absolute; top:100%; left:0; right:0; background:#fff;
+    border-bottom:1px solid var(--line); box-shadow:0 8px 16px rgba(0,0,0,.05); z-index:20;
+    padding:6px 24px 16px;
+  }
+  .mobile-panel.open{ display:block; }
+  .mobile-panel ul{ list-style:none; margin:0; padding:0; font-family:'Inter',sans-serif; font-size:15px; }
+  .mobile-panel li{ border-top:1px solid var(--line); }
+  .mobile-panel li:first-child{ border-top:none; }
+  .mobile-panel a{ display:block; padding:12px 2px; text-decoration:none; color:var(--ink); }
+  .mobile-panel a.active{ color:var(--link); font-weight:600; }
 
-  .research-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px 40px; }
-  .r-card h3{ font-size:14.5px; font-weight:600; margin:0 0 6px; display:flex; align-items:center; gap:9px; }
-  .r-card h3::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--accent); flex:none; }
-  .r-card p{ font-size:13.5px; color:var(--ink-soft); margin:0; line-height:1.55; padding-left:14px; }
+  /* closing identity block, placed under all content */
+  .signoff{ margin:56px 0 0; padding-top:30px; border-top:1px solid var(--line); }
+  .signoff .brand{ font-family:'Inter',sans-serif; font-weight:700; font-size:19px; margin:0; color:var(--ink); }
+  .signoff .tagline{ font-family:'Inter',sans-serif; font-size:13.5px; color:var(--ink-soft); margin:4px 0 0; }
 
-  .tl-item{ display:grid; grid-template-columns:120px 1fr; gap:22px; padding:18px 0; border-top:1px solid var(--line); }
-  .tl-item:first-child{ border-top:none; }
-  .tl-date{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-faint); padding-top:2px; }
-  .tl-title{ font-size:15px; font-weight:600; margin:0 0 3px; }
-  .tl-org{ font-size:13.5px; color:var(--accent); margin:0 0 6px; font-weight:500; }
-  .tl-desc{ font-size:13px; color:var(--ink-soft); line-height:1.6; margin:0; }
-  .tl-desc ul{ margin:6px 0 0; padding-left:18px; }
-  .tl-desc li{ margin-bottom:3px; }
+  h1.page-title{ font-size:15px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin:30px 0 14px; }
 
-  .school-group{ margin-bottom:26px; }
-  .school-label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px; }
-  .phd-row{ display:grid; grid-template-columns:200px 1fr; gap:18px; padding:11px 0; border-top:1px solid var(--line); align-items:baseline; }
-  .phd-row:first-of-type{ border-top:none; }
-  .phd-name{ font-size:13.5px; font-weight:600; }
-  .phd-topic{ font-size:13px; color:var(--ink-soft); line-height:1.5; }
+  .banner{
+    width:100%; border-radius:3px; margin:22px 0 8px;
+    background:
+      linear-gradient(90deg, rgba(11,79,176,.07) 1px, transparent 1px) 0 0/28px 28px,
+      linear-gradient(0deg, rgba(11,79,176,.07) 1px, transparent 1px) 0 0/28px 28px,
+      #f6f6f4;
+    border:1px solid var(--line);
+    position:relative; overflow:hidden;
+    padding:26px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  }
+  .banner-track{
+    display:flex; align-items:flex-start; gap:60px; width:max-content;
+    animation:bannerScroll 28s linear infinite;
+  }
+  .banner:hover .banner-track{ animation-play-state:paused; }
+  .banner-item{ display:flex; flex-direction:column; align-items:center; gap:9px; flex:none; width:78px; }
+  .banner-item svg{ width:46px; height:46px; overflow:visible; }
+  .banner-item svg *{ fill:none; stroke:#0b4fb0; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+  .banner-item svg .fill{ fill:#0b4fb0; stroke:none; }
+  .banner-item span{ font-family:'Inter',sans-serif; font-size:10px; letter-spacing:.02em; color:var(--ink-soft); text-align:center; line-height:1.25; }
+  @keyframes bannerScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .banner-caption{ font-family:'Inter',sans-serif; font-size:11.5px; color:#999; text-align:center; margin:6px 0 0; }
 
-  .pub-item{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--line); }
-  .pub-item:first-child{ border-top:none; }
-  .pub-tag{ flex:none; width:78px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
-    padding:3px 0; text-align:center; height:fit-content; border-radius:3px; font-weight:500; }
-  .tag-ieee{ background:var(--accent-soft); color:var(--accent); }
-  .tag-pre{ background:var(--amber-soft); color:var(--amber); }
-  .pub-text{ font-size:13.5px; line-height:1.65; color:#33353A; }
-  .pub-text .ttl{ font-style:italic; color:var(--ink); }
-  .pub-text .doi{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); }
-  .pub-more{ margin-top:18px; font-size:13px; color:var(--ink-soft); }
-  .pub-more a{ color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; }
-  .pub-more a:hover{ border-color:var(--accent); }
+  p{ margin:0 0 16px; color:#242424; }
+  hr.rule{ border:none; border-top:1px solid var(--line); margin:38px 0; }
 
-  .service-list{ columns:2; column-gap:40px; font-size:13.5px; color:var(--ink-soft); line-height:1.7; }
-  .service-list li{ break-inside:avoid; margin-bottom:10px; }
-  .service-list li b{ color:var(--ink); font-weight:600; }
+  h2.section-h{ font-size:20px; margin:0 0 14px; }
+  h3.subhead{ font-size:14px; font-family:'Inter',sans-serif; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin:30px 0 14px; }
+  h3.subhead:first-of-type{ margin-top:6px; }
 
-  .contact-card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:36px 40px; display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap; }
-  .contact-card h3{ font-size:19px; margin:0 0 6px; font-family:'Source Serif 4',serif; font-weight:600; }
-  .contact-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); }
-  .contact-btn{ display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:#fff; text-decoration:none;
-    font-size:13px; font-weight:500; padding:12px 20px; border-radius:7px; transition:background .15s ease; }
-  .contact-btn:hover{ background:var(--accent); }
+  ul.plain, ol.plain{ margin:0 0 16px; padding-left:22px; color:#242424; }
+  ul.plain li, ol.plain li{ margin-bottom:6px; }
 
-  footer{ margin-top:60px; padding-top:24px; border-top:1px solid var(--line); font-size:11.5px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; }
+  table.acad{ width:100%; border-collapse:collapse; font-family:'Inter',sans-serif; font-size:13.5px; margin-bottom:8px; }
+  table.acad td, table.acad th{ border-top:1px solid var(--line); padding:10px 10px 10px 0; vertical-align:top; text-align:left; }
+  table.acad th{ font-weight:600; color:var(--ink-soft); font-size:12px; text-transform:uppercase; letter-spacing:.04em; border-top:none; padding-top:0; padding-bottom:8px; }
+  table.acad td.date{ white-space:nowrap; color:var(--ink-soft); width:120px; }
+  table.acad td.org{ color:var(--ink-soft); }
 
-  @media (max-width: 880px){
-    .shell{ flex-direction:column; }
-    .sidebar{ position:relative; height:auto; width:100%; border-right:none; border-bottom:1px solid var(--line); padding:28px 24px; }
-    .sig-curve{ display:none; }
-    nav.side-nav{ margin-top:24px; }
-    nav.side-nav ul{ display:flex; flex-wrap:wrap; gap:4px 14px; }
-    .side-bottom{ margin-top:24px; padding-top:18px; }
-    main{ padding:40px 22px 80px; }
-    .stat-row{ grid-template-columns:1fr 1fr; }
-    .research-grid{ grid-template-columns:1fr; }
-    .tl-item{ grid-template-columns:1fr; gap:4px; }
-    .phd-row{ grid-template-columns:1fr; gap:4px; }
-    .service-list{ columns:1; }
-    .contact-card{ flex-direction:column; align-items:flex-start; }
+  .pub-list{ margin:0; padding:0; list-style:none; }
+  .pub-list li{ padding:14px 0; border-top:1px solid var(--line); font-size:15.5px; }
+  .pub-list li:first-child{ border-top:none; }
+  .pub-tag{ font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); }
+  .pub-list .ttl{ font-style:italic; }
+  .pub-list .doi{ font-family:'Inter',sans-serif; font-size:12.5px; }
+
+  .stu-group{ margin-bottom:6px; }
+  table.acad td.stu-name{ width:230px; }
+  .stu-group h3{ font-size:13px; font-family:'Inter',sans-serif; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); margin:22px 0 8px; font-weight:600; }
+
+  .news-table{ width:100%; border-collapse:collapse; font-size:15px; }
+  .news-table td{ border-top:1px solid var(--line); padding:12px 0; vertical-align:top; }
+  .news-table td.when{ width:110px; font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft); font-style:normal; white-space:nowrap; }
+  .news-table tr:first-child td{ border-top:none; }
+
+  footer.foot{ font-family:'Inter',sans-serif; font-size:12px; color:#999; margin-top:50px; padding-top:18px; border-top:1px solid var(--line); }
+
+  /* pages */
+  .page{ display:none; }
+  .page.active{ display:block; }
+
+  /* ---------- responsive nav collapse ---------- */
+  @media (max-width:760px){
+    ul.nav-links{ display:none; }
+    .nav-right{ justify-content:flex-end; gap:10px; }
+    .menu-btn{ display:flex; }
+  }
+
+  @media (max-width:640px){
+    body{ font-size:16px; line-height:1.64; }
+    .wrap{ padding:0 18px 70px; }
+    header.top{ padding:16px 0 0; }
+    .util-bar{ padding:8px 18px 0; }
+    nav.top-nav{ font-size:13px; padding:12px 0; }
+    .fp-logo-img{ height:26px; }
+    .research-logo{ font-size:9.5px; }
+    .research-logo svg{ width:14px; height:14px; }
+    h2.section-h{ font-size:18px; }
+    .banner{ padding:18px 0; }
+    .banner-track{ gap:40px; }
+    .banner-item{ width:64px; }
+    .banner-item svg{ width:38px; height:38px; }
+    .banner-item span{ font-size:9px; }
+    table.acad td.date{ width:84px; font-size:12.5px; }
+    table.acad td, table.acad th{ padding:9px 8px 9px 0; }
+    .stu-group table.acad tr{ display:block; padding:10px 0; border-top:1px solid var(--line); }
+    .stu-group table.acad tr:first-child{ border-top:none; }
+    .stu-group table.acad td{ display:block; border-top:none; padding:2px 0; }
+    table.acad td.stu-name{ width:auto; font-weight:600; }
+    .news-table td.when{ width:74px; font-size:11.5px; }
+    .pub-list li{ font-size:14.5px; }
+  }
+
+  @media (max-width:400px){
+    table.acad tr{ display:block; padding:10px 0; border-top:1px solid var(--line); }
+    table.acad tr:first-child{ border-top:none; }
+    table.acad td.date{ display:block; width:auto; margin-bottom:2px; }
+    table.acad td{ border-top:none; padding:2px 0; }
   }
 
   @media (prefers-reduced-motion: reduce){
-    section{ opacity:1; transform:none; transition:none; }
-    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+    .banner-track{ animation:none !important; }
   }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<div class="shell">
-
-  <aside class="sidebar">
-    <svg class="sig-curve" viewBox="0 0 390 180" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="70" x2="390" y2="70" stroke="#C9CFE8" stroke-width="1" stroke-dasharray="2 4"/>
-      <path d="M0,150 C 30,150 45,4 75,4 C 100,4 108,110 132,110 C 152,110 158,45 180,45 C 198,45 204,88 224,88 C 240,88 246,60 264,60 C 280,60 286,76 302,76 C 316,76 322,68 340,68 C 356,68 362,71 390,70"
-        fill="none" stroke="#1E4FD8" stroke-width="1.6"/>
-      <circle cx="75" cy="4" r="2.6" fill="#1E4FD8"/>
-    </svg>
-
-    <div class="side-top">
-      <div class="eyebrow"><span class="dot"></span>Docteur-Ingénieur</div>
-      <h1 class="name serif">Fanambinantsoa Philibert<br>Andriniriniaimalaza</h1>
-      <p class="role">Chercheur Postdoctoral — Électronique Industrielle,<br>Commande Intelligente &amp; Énergie Renouvelable</p>
-      <p class="affil">ISSTM · Université de Mahajanga</p>
+  <div class="util-bar">
+    <button type="button" class="research-logo" id="researchLogoBtn" aria-label="Research search" aria-expanded="false" aria-controls="searchBar">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="2.4"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4.2"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
+      </svg>
+      <span>Research</span>
+    </button>
+    <div class="lang-mini">
+      <button type="button" data-lang="fr" class="on">FR</button>
+      <span class="sep">/</span>
+      <button type="button" data-lang="en">EN</button>
     </div>
+  </div>
 
-    <nav class="side-nav">
-      <ul>
-        <li><a href="#about"><span class="idx">01</span>À propos</a></li>
-        <li><a href="#research"><span class="idx">02</span>Axes de recherche</a></li>
-        <li><a href="#education"><span class="idx">03</span>Cursus académique</a></li>
-        <li><a href="#experience"><span class="idx">04</span>Expérience</a></li>
-        <li><a href="#supervision"><span class="idx">05</span>Encadrement doctoral</a></li>
-        <li><a href="#publications"><span class="idx">06</span>Publications</a></li>
-        <li><a href="#service"><span class="idx">07</span>Responsabilités</a></li>
-        <li><a href="#contact"><span class="idx">08</span>Contact</a></li>
-      </ul>
+  <div class="search-bar" id="searchBar">
+    <div class="search-bar-row">
+      <input type="text" id="searchInput" autocomplete="off" placeholder="Rechercher F. Philibert Andriniriniaimalaza @ ISSTM…">
+      <button type="button" class="search-close" id="searchClose" aria-label="Close search">×</button>
+      <svg class="search-bar-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/>
+      </svg>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <header class="top">
+    <nav class="top-nav">
+      <a class="fp-logo" href="https://fp-lab.co.mg" target="_blank" rel="noopener" aria-label="fp-lab">
+        <img src="assets/fp-lab-logo.png" alt="fp-lab" class="fp-logo-img">
+      </a>
+
+      <div class="nav-right">
+        <ul class="nav-links" data-nav>
+          <li><a href="#accueil" data-page-link="accueil" data-i18n="nav_home">Accueil</a></li>
+          <li><a href="#parcours" data-page-link="parcours" data-i18n="nav_parcours">Cursus &amp; Expérience</a></li>
+          <li><a href="#encadrement" data-page-link="encadrement" data-i18n="nav_encadrement">Encadrement</a></li>
+          <li><a href="#publications" data-page-link="publications" data-i18n="nav_publications">Publications</a></li>
+          <li><a href="#actualites" data-page-link="actualites" data-i18n="nav_news">Actualités</a></li>
+          <li><a href="#contact" data-page-link="contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+        <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span></button>
+      </div>
     </nav>
 
-    <div class="side-bottom">
-      <div class="row">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
-        <a href="mailto:philibert.andriniriniaimalaza@gmail.com">philibert.andriniriniaimalaza@gmail.com</a>
-      </div>
-      <div class="row">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
-        <span>Mahajanga, Madagascar</span>
-      </div>
-      <div class="row">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-        <a href="https://orcid.org/0009-0000-9911-3790" target="_blank" rel="noopener">orcid.org/0009-0000-9911-3790</a>
+    <div class="mobile-panel" id="mobilePanel">
+      <ul data-nav>
+        <li><a href="#accueil" data-page-link="accueil" data-i18n="nav_home">Accueil</a></li>
+        <li><a href="#parcours" data-page-link="parcours" data-i18n="nav_parcours">Cursus &amp; Expérience</a></li>
+        <li><a href="#encadrement" data-page-link="encadrement" data-i18n="nav_encadrement">Encadrement</a></li>
+        <li><a href="#publications" data-page-link="publications" data-i18n="nav_publications">Publications</a></li>
+        <li><a href="#actualites" data-page-link="actualites" data-i18n="nav_news">Actualités</a></li>
+        <li><a href="#contact" data-page-link="contact" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============ PAGE: ACCUEIL (Home + Research merged) ============ -->
+  <section class="page" id="accueil" data-page="accueil">
+    <h1 class="page-title" data-i18n="kicker_home">Accueil</h1>
+
+    <div class="banner">
+      <div class="banner-track">
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="1"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="8" y1="6" x2="8" y2="18"/><line x1="14" y1="6" x2="14" y2="18"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+          <span data-i18n="banner_pv">Photovoltaïque</span>
+        </div>
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="21" x2="12" y2="10"/><circle class="fill" cx="12" cy="9" r="1.1"/><path d="M12 9 C 12 9 18 6 19 2"/><path d="M12 9 C 12 9 8 13 4 15"/><path d="M12 9 C 12 9 15 14 14 20"/></svg>
+          <span data-i18n="banner_wind">Éolien</span>
+        </div>
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="5"/><circle class="fill" cx="12" cy="10" r="1"/><path d="M12 5 L12 10 L16 12"/><path d="M2 19 C 5 16 7 22 10 19 C 13 16 15 22 18 19 C 20 17 21 18 22 17"/></svg>
+          <span data-i18n="banner_hydro">Hydrolien</span>
+        </div>
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="1.5"/><rect class="fill" x="21" y="10" width="2" height="4"/><rect class="fill" x="5" y="10" width="8" height="4"/></svg>
+          <span data-i18n="banner_battery">Stockage</span>
+        </div>
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/><line x1="9" y1="2" x2="9" y2="6"/><line x1="15" y1="2" x2="15" y2="6"/><line x1="9" y1="18" x2="9" y2="22"/><line x1="15" y1="18" x2="15" y2="22"/><line x1="2" y1="9" x2="6" y2="9"/><line x1="2" y1="15" x2="6" y2="15"/><line x1="18" y1="9" x2="22" y2="9"/><line x1="18" y1="15" x2="22" y2="15"/></svg>
+          <span data-i18n="banner_control">Électronique embarquée</span>
+        </div>
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><path d="M3 18 A9 9 0 0 1 21 18"/><line x1="12" y1="18" x2="17" y2="10"/><circle class="fill" cx="12" cy="18" r="1.3"/></svg>
+          <span data-i18n="banner_pid">Régulation PID</span>
+        </div>
+        <div class="banner-item">
+          <svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="12" r="2.2"/><line x1="6.6" y1="7.2" x2="10.4" y2="10.6"/><line x1="17.4" y1="7.2" x2="13.6" y2="10.6"/><line x1="6.6" y1="16.8" x2="10.4" y2="13.4"/><line x1="17.4" y1="16.8" x2="13.6" y2="13.4"/></svg>
+          <span data-i18n="banner_fuzzy">Logique floue</span>
+        </div>
+        <!-- duplicate set for a seamless loop -->
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="1"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="8" y1="6" x2="8" y2="18"/><line x1="14" y1="6" x2="14" y2="18"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+          <span data-i18n="banner_pv">Photovoltaïque</span>
+        </div>
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="21" x2="12" y2="10"/><circle class="fill" cx="12" cy="9" r="1.1"/><path d="M12 9 C 12 9 18 6 19 2"/><path d="M12 9 C 12 9 8 13 4 15"/><path d="M12 9 C 12 9 15 14 14 20"/></svg>
+          <span data-i18n="banner_wind">Éolien</span>
+        </div>
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="5"/><circle class="fill" cx="12" cy="10" r="1"/><path d="M12 5 L12 10 L16 12"/><path d="M2 19 C 5 16 7 22 10 19 C 13 16 15 22 18 19 C 20 17 21 18 22 17"/></svg>
+          <span data-i18n="banner_hydro">Hydrolien</span>
+        </div>
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="1.5"/><rect class="fill" x="21" y="10" width="2" height="4"/><rect class="fill" x="5" y="10" width="8" height="4"/></svg>
+          <span data-i18n="banner_battery">Stockage</span>
+        </div>
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/><line x1="9" y1="2" x2="9" y2="6"/><line x1="15" y1="2" x2="15" y2="6"/><line x1="9" y1="18" x2="9" y2="22"/><line x1="15" y1="18" x2="15" y2="22"/><line x1="2" y1="9" x2="6" y2="9"/><line x1="2" y1="15" x2="6" y2="15"/><line x1="18" y1="9" x2="22" y2="9"/><line x1="18" y1="15" x2="22" y2="15"/></svg>
+          <span data-i18n="banner_control">Électronique embarquée</span>
+        </div>
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 18 A9 9 0 0 1 21 18"/><line x1="12" y1="18" x2="17" y2="10"/><circle class="fill" cx="12" cy="18" r="1.3"/></svg>
+          <span data-i18n="banner_pid">Régulation PID</span>
+        </div>
+        <div class="banner-item" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="12" r="2.2"/><line x1="6.6" y1="7.2" x2="10.4" y2="10.6"/><line x1="17.4" y1="7.2" x2="13.6" y2="10.6"/><line x1="6.6" y1="16.8" x2="10.4" y2="13.4"/><line x1="17.4" y1="16.8" x2="13.6" y2="13.4"/></svg>
+          <span data-i18n="banner_fuzzy">Logique floue</span>
+        </div>
       </div>
     </div>
-  </aside>
+    <p class="banner-caption" data-i18n="banner_caption">Réponse en régime — systèmes de commande adaptative pour chaînes PV / éolien / hydrolien</p>
 
-  <main>
+    <p data-i18n="intro_html">Bienvenue sur la page de <strong>Fanambinantsoa Philibert Andriniriniaimalaza</strong>, chercheur postdoctoral à l'<a href="https://www.mahajanga-univ.mg" target="_blank" rel="noopener">Institut Supérieur des Sciences, Technologies et Management</a> de l'Université de Mahajanga, Madagascar.</p>
 
-    <section id="about">
-      <div class="sec-head"><span class="sec-num mono">01</span><span class="sec-title">À propos</span><span class="sec-rule"></span></div>
-      <p class="lede">Chercheur postdoctoral avec plus de 10 ans d'expertise en électronique et informatique industrielle, systèmes de commande intelligents, électronique embarquée et énergie renouvelable hybride.</p>
-      <p class="lede">Spécialiste de la régulation adaptative par logique floue, ANFIS et PSO, et des techniques de commande numérique appliquées aux systèmes hybrides PV / Éolien / Batterie, à l'optimisation MPPT et aux systèmes d'entraînement de véhicules électriques. Auteur ou co-auteur de 22 publications évaluées par les pairs et communications IEEE, avec un réseau actif de collaborations internationales — Roumanie, France, Maurice, Chine.</p>
-      <div class="seeking">En recherche d'un poste de Maître de Conférences (en milieu local) ou de chercheur postdoctoral à l'international.</div>
+    <hr class="rule">
 
-      <div class="stat-row">
-        <div class="stat"><b>10+</b><span>ans d'expertise en commande &amp; énergie</span></div>
-        <div class="stat"><b>24+</b><span>publications &amp; communications</span></div>
-        <div class="stat"><b>10</b><span>doctorants co-encadrés, 3 écoles doctorales</span></div>
-        <div class="stat"><b>4</b><span>pays de collaboration active</span></div>
-      </div>
-    </section>
+    <h2 class="section-h" data-i18n="profile_heading">Profil académique</h2>
+    <p data-i18n="profile_p1">Chercheur postdoctoral avec plus de 10 ans d'expertise en électronique et informatique industrielle, systèmes de commande intelligents, électronique embarquée et énergie renouvelable hybride.</p>
+    <p data-i18n="profile_p2">Spécialiste de la régulation adaptative par logique floue, ANFIS et PSO, et des techniques de commande numérique appliquées aux systèmes hybrides PV / Éolien / Batterie, à l'optimisation MPPT et aux systèmes d'entraînement de véhicules électriques. Auteur ou co-auteur de 22 publications évaluées par les pairs et communications IEEE, avec un réseau actif de collaborations internationales — Roumanie, France, Maurice, Chine.</p>
+    <p data-i18n="profile_p3">En recherche d'un poste de Maître de Conférences (en milieu local) ou de chercheur postdoctoral à l'international. <a href="mailto:philibert.andriniriniaimalaza@gmail.com" data-i18n="contact_me">Contactez-moi</a> pour toute opportunité de collaboration.</p>
 
-    <section id="research">
-      <div class="sec-head"><span class="sec-num mono">02</span><span class="sec-title">Axes de recherche</span><span class="sec-rule"></span></div>
-      <div class="research-grid">
-        <div class="r-card"><h3>Commande adaptative et intelligente</h3><p>Logique floue, ANFIS, PSO, PID, MPPT.</p></div>
-        <div class="r-card"><h3>Systèmes embarqués et temps réel</h3><p>PMSG, microcontrôleurs, entraînements hybrides.</p></div>
-        <div class="r-card"><h3>Énergies renouvelables</h3><p>PV, éolien, diesel, batterie, turbines hydrolien.</p></div>
-        <div class="r-card"><h3>Optimisation multicritère</h3><p>Coût de l'énergie, émissions CO₂, fiabilité — minimisation du LCOE.</p></div>
-        <div class="r-card"><h3>Simulation et modélisation</h3><p>MATLAB/Simulink, PSIM, LTSpice.</p></div>
-        <div class="r-card"><h3>Microréseaux intelligents</h3><p>Gouvernance et gestion autonome de l'énergie.</p></div>
-      </div>
-    </section>
+    <hr class="rule">
 
-    <section id="education">
-      <div class="sec-head"><span class="sec-num mono">03</span><span class="sec-title">Cursus académique</span><span class="sec-rule"></span></div>
+    <h2 class="section-h" data-i18n="research_heading">Axes de recherche</h2>
+    <ul class="plain">
+      <li data-i18n="research_1"><strong>Commande adaptative et intelligente</strong> — logique floue, ANFIS, PSO, PID, MPPT.</li>
+      <li data-i18n="research_2"><strong>Systèmes embarqués et temps réel</strong> — PMSG, microcontrôleurs, entraînements hybrides.</li>
+      <li data-i18n="research_3"><strong>Énergies renouvelables</strong> — PV, éolien, diesel, batterie, turbines hydrolien.</li>
+      <li data-i18n="research_4"><strong>Optimisation multicritère</strong> — coût de l'énergie, émissions CO₂, fiabilité, minimisation du LCOE.</li>
+      <li data-i18n="research_5"><strong>Simulation et modélisation</strong> — MATLAB/Simulink, PSIM, LTSpice.</li>
+      <li data-i18n="research_6"><strong>Microréseaux intelligents</strong> — gouvernance et gestion autonome de l'énergie.</li>
+    </ul>
+    <p><a href="#publications" data-page-link="publications" data-i18n="see_pubs">Voir les publications récentes &raquo;</a></p>
+  </section>
 
-      <div class="tl-item">
-        <div class="tl-date mono">Nov.–Déc. 2024</div>
-        <div><p class="tl-title">Bourse de Recherche Postdoctorale</p><p class="tl-org">Université Technique Gheorghe Asachi de Iaşi, Roumanie</p><p class="tl-desc">Stratégies de commande intelligente pour convertisseurs de puissance et approches jumeau numérique pour systèmes électriques.</p></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date mono">2020</div>
-        <div><p class="tl-title">Doctorat en Électronique Industrielle et Informatique</p><p class="tl-org">École Doctorale EDT-EnRE, Université d'Antsiranana</p><p class="tl-desc">Thèse : Contribution à l'optimisation de l'efficacité énergétique d'un véhicule électrique à motorisation hybride — contrôleurs hybrides Flou–Mode Glissant et PI à gain variable pour l'entraînement moteur BLAC.</p></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date mono">Mai–Juil. 2016</div>
-        <div><p class="tl-title">Mobilité Doctorale</p><p class="tl-org">Université Politehnica de Bucarest, Roumanie</p><p class="tl-desc">Commande de MADA à PI d'ordre fractionnaire pour les chaînes de conversion éolienne.</p></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date mono">2012</div>
-        <div><p class="tl-title">Diplôme d'Ingénieur en Électronique et Informatique Industrielle</p><p class="tl-org">École Supérieure Polytechnique d'Antsiranana (ESPA)</p><p class="tl-desc">Projet de fin d'études : conception et développement d'un véhicule électrique à deux roues motrices.</p></div>
-      </div>
-    </section>
+  <!-- ============ PAGE: PARCOURS (Cursus + Expérience merged) ============ -->
+  <section class="page" id="parcours" data-page="parcours">
+    <h1 class="page-title" data-i18n="kicker_parcours">Cursus &amp; Expérience</h1>
 
-    <section id="experience">
-      <div class="sec-head"><span class="sec-num mono">04</span><span class="sec-title">Expérience académique</span><span class="sec-rule"></span></div>
+    <h3 class="subhead" data-i18n="education_heading">Formation</h3>
+    <table class="acad">
+      <tr><td class="date">Nov.–Déc. 2024</td><td data-i18n="edu_1">Bourse de Recherche Postdoctorale<br><span class="org">Université Technique Gheorghe Asachi de Iaşi, Roumanie — stratégies de commande intelligente pour convertisseurs de puissance, jumeau numérique.</span></td></tr>
+      <tr><td class="date">2020</td><td data-i18n="edu_2">Doctorat en Électronique Industrielle et Informatique<br><span class="org">École Doctorale EDT-EnRE, Université d'Antsiranana — Thèse : optimisation de l'efficacité énergétique d'un véhicule électrique à motorisation hybride.</span></td></tr>
+      <tr><td class="date">Mai–Juil. 2016</td><td data-i18n="edu_3">Mobilité Doctorale<br><span class="org">Université Politehnica de Bucarest, Roumanie — commande de MADA à PI d'ordre fractionnaire pour chaînes de conversion éolienne.</span></td></tr>
+      <tr><td class="date">2012</td><td data-i18n="edu_4">Diplôme d'Ingénieur en Électronique et Informatique Industrielle<br><span class="org">École Supérieure Polytechnique d'Antsiranana (ESPA).</span></td></tr>
+    </table>
 
-      <div class="tl-item">
-        <div class="tl-date mono">2020 – Présent</div>
-        <div><p class="tl-title">Enseignant &amp; Chercheur Postdoctoral</p><p class="tl-org">ISSTM — Université de Mahajanga</p>
-          <div class="tl-desc"><ul>
-            <li>Intelligence Artificielle, Commande Numérique, Électronique de Puissance.</li>
-            <li>Coordinateur de la licence en Génie Électronique et Informatique Industrielle.</li>
-            <li>Encadrement de plus de 30 projets de fin d'études et mémoires de Master 2.</li>
-            <li>Responsable du Service de la Scolarité (depuis 2022).</li>
-          </ul></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date mono">2022 – Présent</div>
-        <div><p class="tl-title">Enseignant</p><p class="tl-org">FSTE — Université de Mahajanga</p><p class="tl-desc">Électronique analogique et numérique, techniques avancées de commande (retour d'état, adaptative, robuste, métaheuristique).</p></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date mono">2020 – 2023</div>
-        <div><p class="tl-title">Enseignant en Informatique</p><p class="tl-org">ESTI — École Supérieure des Technologies de l'Information</p><p class="tl-desc">PowerShell, applications web progressives (PWA), programmation Java avec Spring Boot et Spring MVC.</p></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date mono">2015 – 2020</div>
-        <div><p class="tl-title">Enseignant &amp; Coordinateur de Master</p><p class="tl-org">ESPA — Université d'Antsiranana</p>
-          <div class="tl-desc"><ul>
-            <li>Coordinateur du Master en Télécommunications &amp; Réseaux.</li>
-            <li>Électronique analogique/numérique, automatique, systèmes à microcontrôleurs.</li>
-            <li>Encadrement de plus de 20 projets de fin d'études et mémoires de Master 2.</li>
-          </ul></div>
-        </div>
-      </div>
-    </section>
+    <h3 class="subhead" data-i18n="experience_heading">Expérience académique</h3>
+    <table class="acad">
+      <tr><td class="date" data-i18n="exp_1_date">2020 – présent</td><td data-i18n="exp_1">Enseignant &amp; Chercheur Postdoctoral<br><span class="org">ISSTM, Université de Mahajanga — IA, Commande Numérique, Électronique de Puissance ; coordinateur de licence ; responsable du Service de la Scolarité depuis 2022.</span></td></tr>
+      <tr><td class="date" data-i18n="exp_2_date">2022 – présent</td><td data-i18n="exp_2">Enseignant<br><span class="org">FSTE, Université de Mahajanga — électronique analogique/numérique, commande avancée.</span></td></tr>
+      <tr><td class="date">2020 – 2023</td><td data-i18n="exp_3">Enseignant en Informatique<br><span class="org">ESTI — PowerShell, PWA, Java Spring Boot / Spring MVC.</span></td></tr>
+      <tr><td class="date">2015 – 2020</td><td data-i18n="exp_4">Enseignant &amp; Coordinateur de Master<br><span class="org">ESPA, Université d'Antsiranana — Master Télécommunications &amp; Réseaux ; encadrement de 20+ PFE et mémoires M2.</span></td></tr>
+    </table>
+  </section>
 
-    <section id="supervision">
-      <div class="sec-head"><span class="sec-num mono">05</span><span class="sec-title">Encadrement doctoral</span><span class="sec-rule"></span></div>
-      <p class="lede" style="font-size:14px;margin-bottom:28px;">Co-encadrement actif de 10 doctorants à travers 3 écoles doctorales.</p>
+  <!-- ============ PAGE: ENCADREMENT ============ -->
+  <section class="page" id="encadrement" data-page="encadrement">
+    <h1 class="page-title" data-i18n="kicker_encadrement">Encadrement doctoral</h1>
+    <p data-i18n="sup_intro">Co-encadrement actif de 10 doctorants à travers 3 écoles doctorales.</p>
 
-      <div class="school-group">
-        <div class="school-label">Univ. La Réunion — ED-STS</div>
-        <div class="phd-row"><div class="phd-name">Andrinirintsoa José M.</div><div class="phd-topic">Estimation de l'ombrage PV par imageurs de ciel et apprentissage profond multimodal</div></div>
-      </div>
+    <div class="stu-group">
+      <h3>Univ. La Réunion — ED-STS</h3>
+      <table class="acad">
+        <tr><td class="stu-name">Andrinirintsoa José M.</td><td data-i18n="stu_1">Estimation de l'ombrage PV par imageurs de ciel et apprentissage profond multimodal</td></tr>
+      </table>
+    </div>
 
-      <div class="school-group">
-        <div class="school-label">Univ. Mahajanga — EDGVM</div>
-        <div class="phd-row"><div class="phd-name">Randriamihelisoa Paolo R.</div><div class="phd-topic">Commande du transfert d'énergie sans fil pour drones</div></div>
-        <div class="phd-row"><div class="phd-name">Soamiray Syllah B.Y.A.</div><div class="phd-topic">Pilotage autonome de drone par interface cerveau-ordinateur</div></div>
-        <div class="phd-row"><div class="phd-name">Frederic Moïse</div><div class="phd-topic">Réseaux de capteurs IoT pour la surveillance climatologique (Boeny)</div></div>
-      </div>
+    <div class="stu-group">
+      <h3>Univ. Mahajanga — EDGVM</h3>
+      <table class="acad">
+        <tr><td class="stu-name">Randriamihelisoa Paolo R.</td><td data-i18n="stu_2">Commande du transfert d'énergie sans fil pour drones</td></tr>
+        <tr><td class="stu-name">Soamiray Syllah B.Y.A.</td><td data-i18n="stu_3">Pilotage autonome de drone par interface cerveau-ordinateur</td></tr>
+        <tr><td class="stu-name">Frederic Moïse</td><td data-i18n="stu_4">Réseaux de capteurs IoT pour la surveillance climatologique (Boeny)</td></tr>
+      </table>
+    </div>
 
-      <div class="school-group">
-        <div class="school-label">Univ. Antsiranana — EDT-EnRE</div>
-        <div class="phd-row"><div class="phd-name">Botolahy Angelo</div><div class="phd-topic">Système hybride PV/Batterie pour les passages à niveau MADARAIL</div></div>
-        <div class="phd-row"><div class="phd-name">Randria Amédé W.</div><div class="phd-topic">Minimisation des pertes d'alimentation dans les réseaux d'électrification rurale</div></div>
-        <div class="phd-row"><div class="phd-name">Diny Oili</div><div class="phd-topic">Intégration de microréseaux intelligents en milieu urbain</div></div>
-        <div class="phd-row"><div class="phd-name">Rabearison Bertho</div><div class="phd-topic">Onduleur de courant connecté au réseau sans stockage — modélisation et commande</div></div>
-        <div class="phd-row"><div class="phd-name">Razafinarivo H.F.</div><div class="phd-topic">Détection intelligente de défauts et prédiction de production dans les centrales solaires</div></div>
-        <div class="phd-row"><div class="phd-name">Randjaka Tsiloavy</div><div class="phd-topic">Gestion énergétique d'un système PV/Batterie connecté au réseau (ANFIS)</div></div>
-      </div>
-    </section>
+    <div class="stu-group">
+      <h3>Univ. Antsiranana — EDT-EnRE</h3>
+      <table class="acad">
+        <tr><td class="stu-name">Botolahy Angelo</td><td data-i18n="stu_5">Système hybride PV/Batterie pour les passages à niveau MADARAIL</td></tr>
+        <tr><td class="stu-name">Randria Amédé W.</td><td data-i18n="stu_6">Minimisation des pertes d'alimentation dans les réseaux d'électrification rurale</td></tr>
+        <tr><td class="stu-name">Diny Oili</td><td data-i18n="stu_7">Intégration de microréseaux intelligents en milieu urbain</td></tr>
+        <tr><td class="stu-name">Rabearison Bertho</td><td data-i18n="stu_8">Onduleur de courant connecté au réseau sans stockage — modélisation et commande</td></tr>
+        <tr><td class="stu-name">Razafinarivo H.F.</td><td data-i18n="stu_9">Détection intelligente de défauts et prédiction de production dans les centrales solaires</td></tr>
+        <tr><td class="stu-name">Randjaka Tsiloavy</td><td data-i18n="stu_10">Gestion énergétique d'un système PV/Batterie connecté au réseau (ANFIS)</td></tr>
+      </table>
+    </div>
+  </section>
 
-    <section id="publications">
-      <div class="sec-head"><span class="sec-num mono">06</span><span class="sec-title">Publications sélectionnées</span><span class="sec-rule"></span></div>
+  <!-- ============ PAGE: PUBLICATIONS ============ -->
+  <section class="page" id="publications" data-page="publications">
+    <h1 class="page-title" data-i18n="kicker_publications">Publications sélectionnées</h1>
+    <ul class="pub-list">
+      <li><span class="pub-tag" data-i18n="tag_preprint">Prépublication</span><br>Andriniriniaimalaza, F.P.; Randriamaitso, T.; Balan, G.; Rhevihaja, S.N.; Rakotomalala, L.; Lucache, D. (2025). <span class="ttl">Hybrid Neuro-PSO MPPT control to improve the performance of vertical-axis hydrokinetic turbine columns.</span> SSRN Preprint. <span class="doi"><a href="https://doi.org/10.2139/ssrn.5856521" target="_blank" rel="noopener">doi:10.2139/ssrn.5856521</a></span></li>
+      <li><span class="pub-tag">IEEE</span><br>Andriniriniaimalaza, F.P. et al. (2025). <span class="ttl">Hybrid fuzzy logic and shading-adaptive PSO for the dynamic mitigation of PV shading faults.</span> IEEE SIELMEN 2025, Iaşi, pp. 633–638. <span class="doi"><a href="https://doi.org/10.1109/SIELMEN67352.2025.11260746" target="_blank" rel="noopener">doi:10.1109/SIELMEN67352.2025.11260746</a></span></li>
+      <li><span class="pub-tag">IEEE</span><br>Andriniriniaimalaza, F.P. et al. (2025). <span class="ttl">Improvement and stabilization of the output voltages of a vertical-axis hydrokinetic turbine using intelligent control strategies.</span> IEEE ICECER 2025, Antananarivo, pp. 1–6. <span class="doi"><a href="https://doi.org/10.1109/ICECER65523.2025.11401321" target="_blank" rel="noopener">doi:10.1109/ICECER65523.2025.11401321</a></span></li>
+      <li><span class="pub-tag">IEEE</span><br>Balan, G.; Serea, E.; Andriniriniaimalaza, F.P.; Lucache, D.D.; Sălceanu, A.; Nenninger, P. (2025). <span class="ttl">Digital twin approach for testing and control of automotive headlights.</span> ACEMP &amp; OPTIM, Timişoara, pp. 1–7. <span class="doi"><a href="https://doi.org/10.1109/OPTIM-ACEMP62776.2025.11075229" target="_blank" rel="noopener">doi:10.1109/OPTIM-ACEMP62776.2025.11075229</a></span></li>
+      <li><span class="pub-tag">IEEE</span><br>Andriniriniaimalaza, F.P.; Murad, N.M. (2024). <span class="ttl">Neuro-Fuzzy control of a PMSG for a vertical-axis hydrokinetic turbine — output voltage improvement.</span> IEEE SESAI 2024, Mauritius, pp. 1–6. <span class="doi"><a href="https://doi.org/10.1109/SESAI61023.2024.10599409" target="_blank" rel="noopener">doi:10.1109/SESAI61023.2024.10599409</a></span></li>
+    </ul>
+    <p data-i18n="pub_more_html">+ 19 publications additionnelles, dont deux soumissions IEEE EPEi 2026 en cours de révision — <a href="mailto:philibert.andriniriniaimalaza@gmail.com">CV complet sur demande</a>.</p>
+  </section>
 
-      <div class="pub-item">
-        <div class="pub-tag tag-pre">Prépubl.</div>
-        <div class="pub-text">Andriniriniaimalaza, F.P.; Randriamaitso, T.; Balan, G.; Rhevihaja, S.N.; Rakotomalala, L.; Lucache, D. (2025). <span class="ttl">Hybrid Neuro-PSO MPPT control to improve the performance of vertical-axis hydrokinetic turbine columns.</span> SSRN Preprint. <span class="doi">doi:10.2139/ssrn.5856521</span></div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-tag tag-ieee">IEEE</div>
-        <div class="pub-text">Andriniriniaimalaza, F.P. et al. (2025). <span class="ttl">Hybrid fuzzy logic and shading-adaptive PSO for the dynamic mitigation of PV shading faults.</span> IEEE SIELMEN 2025, Iaşi, pp. 633–638. <span class="doi">doi:10.1109/SIELMEN67352.2025.11260746</span></div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-tag tag-ieee">IEEE</div>
-        <div class="pub-text">Andriniriniaimalaza, F.P. et al. (2025). <span class="ttl">Improvement and stabilization of the output voltages of a vertical-axis hydrokinetic turbine using intelligent control strategies.</span> IEEE ICECER 2025, Antananarivo, pp. 1–6. <span class="doi">doi:10.1109/ICECER65523.2025.11401321</span></div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-tag tag-ieee">IEEE</div>
-        <div class="pub-text">Balan, G.; Serea, E.; Andriniriniaimalaza, F.P.; Lucache, D.D.; Sălceanu, A.; Nenninger, P. (2025). <span class="ttl">Digital twin approach for testing and control of automotive headlights.</span> ACEMP &amp; OPTIM, Timişoara, pp. 1–7. <span class="doi">doi:10.1109/OPTIM-ACEMP62776.2025.11075229</span></div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-tag tag-ieee">IEEE</div>
-        <div class="pub-text">Andriniriniaimalaza, F.P.; Murad, N.M. (2024). <span class="ttl">Neuro-Fuzzy control of a PMSG for a vertical-axis hydrokinetic turbine — output voltage improvement.</span> IEEE SESAI 2024, Mauritius, pp. 1–6. <span class="doi">doi:10.1109/SESAI61023.2024.10599409</span></div>
-      </div>
+  <!-- ============ PAGE: ACTUALITÉS ============ -->
+  <section class="page" id="actualites" data-page="actualites">
+    <h1 class="page-title" data-i18n="kicker_news">Actualités</h1>
+    <table class="news-table">
+      <tr><td class="when" data-i18n="news_1_date">Juin 2026</td><td data-i18n="news_1">Extension de l'article AESMT'26 sur les panneaux micro-perforés acoustiques admise en pré-évaluation pour publication dans une revue Elsevier (RENE / EGY / ATE). <a href="mailto:philibert.andriniriniaimalaza@gmail.com" data-i18n="learn_more">En savoir plus</a></td></tr>
+      <tr><td class="when">2025</td><td data-i18n="news_2">Deux nouvelles communications acceptées : IEEE SIELMEN 2025 (Iaşi) et IEEE ICECER 2025 (Antananarivo), sur la commande adaptative de systèmes PV et hydrolien.</td></tr>
+      <tr><td class="when">2024</td><td data-i18n="news_3">Bourse de recherche postdoctorale à l'Université Technique Gheorghe Asachi de Iaşi, Roumanie.</td></tr>
+    </table>
+  </section>
 
-      <p class="pub-more">+ 19 publications additionnelles, dont deux soumissions IEEE EPEi 2026 en cours de révision — <a href="mailto:philibert.andriniriniaimalaza@gmail.com">CV complet sur demande</a>.</p>
-    </section>
+  <!-- ============ PAGE: CONTACT ============ -->
+  <section class="page" id="contact" data-page="contact">
+    <h1 class="page-title" data-i18n="kicker_contact">Contact</h1>
+    <p>
+      <span data-i18n="label_email">Email</span> — <a href="mailto:philibert.andriniriniaimalaza@gmail.com">philibert.andriniriniaimalaza@gmail.com</a><br>
+      ORCID — <a href="https://orcid.org/0009-0000-9911-3790" target="_blank" rel="noopener">0009-0000-9911-3790</a><br>
+      <span data-i18n="label_location">Localisation</span> — Mahajanga, Madagascar
+    </p>
+  </section>
 
-    <section id="service">
-      <div class="sec-head"><span class="sec-num mono">07</span><span class="sec-title">Responsabilités &amp; engagements</span><span class="sec-rule"></span></div>
-      <ul class="service-list">
-        <li><b>Depuis juin 2026 —</b> Membre de l'équipe d'accueil EA-PGE, École Doctorale EnRE, ESPA / Univ. d'Antsiranana</li>
-        <li><b>Depuis janvier 2026 —</b> Responsable Communications, ISSTM</li>
-        <li><b>Déc. 2025 —</b> Formateur, écriture scientifique pour doctorants, Univ. de Mahajanga</li>
-        <li><b>Avril 2025 —</b> Formation des formateurs, écriture scientifique — Projet HayKa Erasmus+</li>
-        <li><b>2022–2025 —</b> Responsable du Service Partenariat et Coopération, ISSTM</li>
-        <li><b>2023 —</b> Membre du Comité Scientifique, Université d'Été v.04, Univ. de Mahajanga</li>
-        <li>Contributeur actif : JRISTs, Université d'Été, Doctoriales</li>
-        <li>Collaborations internationales : Roumanie, France (La Réunion), Maurice, Chine (NUIST)</li>
-      </ul>
-    </section>
+  <div class="signoff">
+    <p class="brand">F. Philibert Andriniriniaimalaza</p>
+    <p class="tagline" data-i18n="signoff_tagline">Docteur-Ingénieur · Chercheur Postdoctoral — ISSTM, Université de Mahajanga, Madagascar</p>
+  </div>
 
-    <section id="contact">
-      <div class="sec-head"><span class="sec-num mono">08</span><span class="sec-title">Contact</span><span class="sec-rule"></span></div>
-      <div class="contact-card">
-        <div>
-          <h3 class="serif">Discutons collaboration ou opportunité postdoctorale.</h3>
-          <p>Réponse habituelle sous 2–3 jours ouvrés.</p>
-        </div>
-        <a class="contact-btn" href="mailto:philibert.andriniriniaimalaza@gmail.com">
-          Écrire un email
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
-      <footer>© 2026 F. Philibert Andriniriniaimalaza · ISSTM, Université de Mahajanga, Madagascar</footer>
-    </section>
+  <footer class="foot">© 2026 F. Philibert Andriniriniaimalaza · ISSTM, Université de Mahajanga</footer>
 
-  </main>
 </div>
 
 <script>
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('main section').forEach(s=>io.observe(s));
+(function(){
+  var translations = {
+    fr: {
+      nav_home: "Accueil",
+      nav_parcours: "Cursus &amp; Expérience",
+      nav_encadrement: "Encadrement",
+      nav_publications: "Publications",
+      nav_news: "Actualités",
+      nav_contact: "Contact",
+      kicker_home: "Accueil",
+      banner_caption: "Axes de recherche — commande intelligente pour chaînes PV / éolien / hydrolien",
+      intro_html: "Bienvenue sur la page de <strong>Fanambinantsoa Philibert Andriniriniaimalaza</strong>, chercheur postdoctoral à l'<a href=\"https://www.mahajanga-univ.mg\" target=\"_blank\" rel=\"noopener\">Institut Supérieur des Sciences, Technologies et Management</a> de l'Université de Mahajanga, Madagascar.",
+      profile_heading: "Profil académique",
+      profile_p1: "Chercheur postdoctoral avec plus de 10 ans d'expertise en électronique et informatique industrielle, systèmes de commande intelligents, électronique embarquée et énergie renouvelable hybride.",
+      profile_p2: "Spécialiste de la régulation adaptative par logique floue, ANFIS et PSO, et des techniques de commande numérique appliquées aux systèmes hybrides PV / Éolien / Batterie, à l'optimisation MPPT et aux systèmes d'entraînement de véhicules électriques. Auteur ou co-auteur de 22 publications évaluées par les pairs et communications IEEE, avec un réseau actif de collaborations internationales — Roumanie, France, Maurice, Chine.",
+      profile_p3: "En recherche d'un poste de Maître de Conférences (en milieu local) ou de chercheur postdoctoral à l'international. <a href=\"mailto:philibert.andriniriniaimalaza@gmail.com\">Contactez-moi</a> pour toute opportunité de collaboration.",
+      contact_me: "Contactez-moi",
+      research_heading: "Axes de recherche",
+      research_1: "<strong>Commande adaptative et intelligente</strong> — logique floue, ANFIS, PSO, PID, MPPT.",
+      research_2: "<strong>Systèmes embarqués et temps réel</strong> — PMSG, microcontrôleurs, entraînements hybrides.",
+      research_3: "<strong>Énergies renouvelables</strong> — PV, éolien, diesel, batterie, turbines hydrolien.",
+      research_4: "<strong>Optimisation multicritère</strong> — coût de l'énergie, émissions CO₂, fiabilité, minimisation du LCOE.",
+      research_5: "<strong>Simulation et modélisation</strong> — MATLAB/Simulink, PSIM, LTSpice.",
+      research_6: "<strong>Microréseaux intelligents</strong> — gouvernance et gestion autonome de l'énergie.",
+      see_pubs: "Voir les publications récentes »",
+      kicker_parcours: "Cursus &amp; Expérience",
+      education_heading: "Formation",
+      edu_1: "Bourse de Recherche Postdoctorale<br><span class=\"org\">Université Technique Gheorghe Asachi de Iaşi, Roumanie — stratégies de commande intelligente pour convertisseurs de puissance, jumeau numérique.</span>",
+      edu_2: "Doctorat en Électronique Industrielle et Informatique<br><span class=\"org\">École Doctorale EDT-EnRE, Université d'Antsiranana — Thèse : optimisation de l'efficacité énergétique d'un véhicule électrique à motorisation hybride.</span>",
+      edu_3: "Mobilité Doctorale<br><span class=\"org\">Université Politehnica de Bucarest, Roumanie — commande de MADA à PI d'ordre fractionnaire pour chaînes de conversion éolienne.</span>",
+      edu_4: "Diplôme d'Ingénieur en Électronique et Informatique Industrielle<br><span class=\"org\">École Supérieure Polytechnique d'Antsiranana (ESPA).</span>",
+      experience_heading: "Expérience académique",
+      exp_1_date: "2020 – présent",
+      exp_1: "Enseignant &amp; Chercheur Postdoctoral<br><span class=\"org\">ISSTM, Université de Mahajanga — IA, Commande Numérique, Électronique de Puissance ; coordinateur de licence ; responsable du Service de la Scolarité depuis 2022.</span>",
+      exp_2_date: "2022 – présent",
+      exp_2: "Enseignant<br><span class=\"org\">FSTE, Université de Mahajanga — électronique analogique/numérique, commande avancée.</span>",
+      exp_3: "Enseignant en Informatique<br><span class=\"org\">ESTI — PowerShell, PWA, Java Spring Boot / Spring MVC.</span>",
+      exp_4: "Enseignant &amp; Coordinateur de Master<br><span class=\"org\">ESPA, Université d'Antsiranana — Master Télécommunications &amp; Réseaux ; encadrement de 20+ PFE et mémoires M2.</span>",
+      kicker_encadrement: "Encadrement doctoral",
+      sup_intro: "Co-encadrement actif de 10 doctorants à travers 3 écoles doctorales.",
+      stu_1: "Estimation de l'ombrage PV par imageurs de ciel et apprentissage profond multimodal",
+      stu_2: "Commande du transfert d'énergie sans fil pour drones",
+      stu_3: "Pilotage autonome de drone par interface cerveau-ordinateur",
+      stu_4: "Réseaux de capteurs IoT pour la surveillance climatologique (Boeny)",
+      stu_5: "Système hybride PV/Batterie pour les passages à niveau MADARAIL",
+      stu_6: "Minimisation des pertes d'alimentation dans les réseaux d'électrification rurale",
+      stu_7: "Intégration de microréseaux intelligents en milieu urbain",
+      stu_8: "Onduleur de courant connecté au réseau sans stockage — modélisation et commande",
+      stu_9: "Détection intelligente de défauts et prédiction de production dans les centrales solaires",
+      stu_10: "Gestion énergétique d'un système PV/Batterie connecté au réseau (ANFIS)",
+      kicker_publications: "Publications sélectionnées",
+      tag_preprint: "Prépublication",
+      pub_more_html: "+ 19 publications additionnelles, dont deux soumissions IEEE EPEi 2026 en cours de révision — <a href=\"mailto:philibert.andriniriniaimalaza@gmail.com\">CV complet sur demande</a>.",
+      kicker_news: "Actualités",
+      news_1_date: "Juin 2026",
+      news_1: "Extension de l'article AESMT'26 sur les panneaux micro-perforés acoustiques admise en pré-évaluation pour publication dans une revue Elsevier (RENE / EGY / ATE). <a href=\"mailto:philibert.andriniriniaimalaza@gmail.com\">En savoir plus</a>",
+      learn_more: "En savoir plus",
+      news_2: "Deux nouvelles communications acceptées : IEEE SIELMEN 2025 (Iaşi) et IEEE ICECER 2025 (Antananarivo), sur la commande adaptative de systèmes PV et hydrolien.",
+      news_3: "Bourse de recherche postdoctorale à l'Université Technique Gheorghe Asachi de Iaşi, Roumanie.",
+      kicker_contact: "Contact",
+      label_email: "Email",
+      label_location: "Localisation",
+      signoff_tagline: "Docteur-Ingénieur · Chercheur Postdoctoral — ISSTM, Université de Mahajanga, Madagascar",
+      search_placeholder: "Rechercher F. Philibert Andriniriniaimalaza @ ISSTM…",
+      search_no_results: "Aucun résultat trouvé.",
+      page_accueil: "Accueil",
+      page_parcours: "Cursus & Expérience",
+      page_encadrement: "Encadrement",
+      page_publications: "Publications",
+      page_actualites: "Actualités",
+      page_contact: "Contact",
+      banner_pv: "Photovoltaïque",
+      banner_wind: "Éolien",
+      banner_hydro: "Hydrolien",
+      banner_battery: "Stockage",
+      banner_control: "Électronique embarquée",
+      banner_pid: "Régulation PID",
+      banner_fuzzy: "Logique floue"
+    },
+    en: {
+      nav_home: "Home",
+      nav_parcours: "Education &amp; Experience",
+      nav_encadrement: "Supervision",
+      nav_publications: "Publications",
+      nav_news: "News",
+      nav_contact: "Contact",
+      kicker_home: "Home",
+      banner_caption: "Research areas — intelligent control for PV / wind / hydrokinetic chains",
+      intro_html: "Welcome to the page of <strong>Fanambinantsoa Philibert Andriniriniaimalaza</strong>, postdoctoral researcher at the <a href=\"https://www.mahajanga-univ.mg\" target=\"_blank\" rel=\"noopener\">Institut Supérieur des Sciences, Technologies et Management</a>, University of Mahajanga, Madagascar.",
+      profile_heading: "Academic profile",
+      profile_p1: "Postdoctoral researcher with over 10 years of expertise in industrial electronics and computing, intelligent control systems, embedded electronics, and hybrid renewable energy.",
+      profile_p2: "Specialist in adaptive control via fuzzy logic, ANFIS, and PSO, and digital control techniques applied to hybrid PV/Wind/Battery systems, MPPT optimization, and electric vehicle drive systems. Author or co-author of 22 peer-reviewed publications and IEEE communications, with an active international collaboration network — Romania, France, Mauritius, China.",
+      profile_p3: "Seeking a position as Associate Professor (locally) or postdoctoral researcher internationally. <a href=\"mailto:philibert.andriniriniaimalaza@gmail.com\">Get in touch</a> for any collaboration opportunity.",
+      contact_me: "Get in touch",
+      research_heading: "Research areas",
+      research_1: "<strong>Adaptive and intelligent control</strong> — fuzzy logic, ANFIS, PSO, PID, MPPT.",
+      research_2: "<strong>Embedded and real-time systems</strong> — PMSG, microcontrollers, hybrid drives.",
+      research_3: "<strong>Renewable energy systems</strong> — PV, wind, diesel, battery, hydrokinetic turbines.",
+      research_4: "<strong>Multi-criteria optimization</strong> — energy cost, CO₂ emissions, reliability, LCOE minimization.",
+      research_5: "<strong>Simulation and modeling</strong> — MATLAB/Simulink, PSIM, LTSpice.",
+      research_6: "<strong>Smart microgrids</strong> — governance and autonomous energy management.",
+      see_pubs: "See recent publications »",
+      kicker_parcours: "Education &amp; Experience",
+      education_heading: "Education",
+      edu_1: "Postdoctoral Research Fellowship<br><span class=\"org\">Gheorghe Asachi Technical University of Iaşi, Romania — intelligent control strategies for power converters, digital twin approaches.</span>",
+      edu_2: "PhD in Industrial Electronics and Computer Engineering<br><span class=\"org\">EDT-EnRE Doctoral School, University of Antsiranana — Thesis: optimization of energy efficiency of a hybrid-powered electric vehicle.</span>",
+      edu_3: "Doctoral Mobility<br><span class=\"org\">Politehnica University of Bucharest, Romania — fractional-order PI control of a DFIG for wind conversion chains.</span>",
+      edu_4: "Engineering Degree in Industrial Electronics and Computer Engineering<br><span class=\"org\">École Supérieure Polytechnique d'Antsiranana (ESPA).</span>",
+      experience_heading: "Academic experience",
+      exp_1_date: "2020 – present",
+      exp_1: "Lecturer &amp; Postdoctoral Researcher<br><span class=\"org\">ISSTM, University of Mahajanga — AI, Digital Control, Power Electronics; coordinator of the Bachelor's program; Head of the Student Records Office since 2022.</span>",
+      exp_2_date: "2022 – present",
+      exp_2: "Lecturer<br><span class=\"org\">FSTE, University of Mahajanga — analog/digital electronics, advanced control techniques.</span>",
+      exp_3: "Lecturer in Computer Science<br><span class=\"org\">ESTI — PowerShell, PWA, Java Spring Boot / Spring MVC.</span>",
+      exp_4: "Lecturer &amp; Master's Program Coordinator<br><span class=\"org\">ESPA, University of Antsiranana — Master's in Telecommunications &amp; Networks; supervision of 20+ capstone projects and Master's 2 theses.</span>",
+      kicker_encadrement: "Doctoral supervision",
+      sup_intro: "Active co-supervision of 10 PhD students across 3 doctoral schools.",
+      stu_1: "PV shading estimation using sky imagers and multimodal deep learning",
+      stu_2: "Wireless power transfer control for drones",
+      stu_3: "Autonomous drone piloting via brain–computer interface",
+      stu_4: "IoT sensor networks for climate monitoring (Boeny)",
+      stu_5: "Hybrid PV/Battery system for MADARAIL level crossings",
+      stu_6: "Minimizing power losses in rural electrification networks",
+      stu_7: "Integration of smart microgrids in urban environments",
+      stu_8: "Grid-connected current-source inverter without storage — modeling and control",
+      stu_9: "Intelligent fault detection and production forecasting in solar power plants",
+      stu_10: "Energy management of a grid-connected PV/Battery system (ANFIS)",
+      kicker_publications: "Selected publications",
+      tag_preprint: "Preprint",
+      pub_more_html: "+ 19 additional publications, including two IEEE EPEi 2026 submissions currently under review — <a href=\"mailto:philibert.andriniriniaimalaza@gmail.com\">full CV on request</a>.",
+      kicker_news: "News",
+      news_1_date: "June 2026",
+      news_1: "Extended AESMT'26 paper on micro-perforated acoustic panels advanced to preliminary review for journal publication (RENE / EGY / ATE). <a href=\"mailto:philibert.andriniriniaimalaza@gmail.com\">Learn more</a>",
+      learn_more: "Learn more",
+      news_2: "Two new papers accepted: IEEE SIELMEN 2025 (Iaşi) and IEEE ICECER 2025 (Antananarivo), on adaptive control of PV and hydrokinetic systems.",
+      news_3: "Postdoctoral research fellowship at Gheorghe Asachi Technical University of Iaşi, Romania.",
+      kicker_contact: "Contact",
+      label_email: "Email",
+      label_location: "Location",
+      signoff_tagline: "Doctor-Engineer · Postdoctoral Researcher — ISSTM, University of Mahajanga, Madagascar",
+      search_placeholder: "Search F. Philibert Andriniriniaimalaza @ ISSTM…",
+      search_no_results: "No results found.",
+      page_accueil: "Home",
+      page_parcours: "Education & Experience",
+      page_encadrement: "Supervision",
+      page_publications: "Publications",
+      page_actualites: "News",
+      page_contact: "Contact",
+      banner_pv: "Photovoltaic",
+      banner_wind: "Wind",
+      banner_hydro: "Hydrokinetic",
+      banner_battery: "Storage",
+      banner_control: "Embedded electronics",
+      banner_pid: "PID control",
+      banner_fuzzy: "Fuzzy logic"
+    }
+  };
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var val = translations[lang] && translations[lang][key];
+      if (val !== undefined) el.innerHTML = val;
+    });
+    document.querySelectorAll('.lang-mini button').forEach(function(btn){
+      btn.classList.toggle('on', btn.getAttribute('data-lang') === lang);
+    });
+    var si = document.getElementById('searchInput');
+    if (si && translations[lang]) si.placeholder = translations[lang].search_placeholder;
+    try { localStorage.setItem('fp_lang', lang); } catch(e){}
+  }
+
+  document.querySelectorAll('.lang-mini button').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang')); });
+  });
+
+  var savedLang = 'fr';
+  try { savedLang = localStorage.getItem('fp_lang') || 'fr'; } catch(e){}
+  applyLang(savedLang);
+
+  /* ---------- mobile menu ---------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var mobilePanel = document.getElementById('mobilePanel');
+  function closeMobile(){
+    mobilePanel.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  menuBtn.addEventListener('click', function(){
+    var open = mobilePanel.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  /* ---------- page switching ---------- */
+  var pages = document.querySelectorAll('[data-page]');
+  var navLinks = document.querySelectorAll('[data-page-link]');
+
+  function showPage(id){
+    pages.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page-link') === id); });
+    closeMobile();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  navLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.getAttribute('data-page-link');
+      history.pushState(null, '', '#' + id);
+      showPage(id);
+    });
+  });
+
+  window.addEventListener('popstate', function(){
+    var id = (location.hash || '#accueil').slice(1);
+    if (!document.getElementById(id)) id = 'accueil';
+    showPage(id);
+  });
+
+  var initial = (location.hash || '#accueil').slice(1);
+  if (!document.getElementById(initial)) initial = 'accueil';
+  showPage(initial);
+
+  /* ---------- research logo → search bar ---------- */
+  var researchBtn = document.getElementById('researchLogoBtn');
+  var searchBar = document.getElementById('searchBar');
+  var searchInput = document.getElementById('searchInput');
+  var searchResults = document.getElementById('searchResults');
+  var searchClose = document.getElementById('searchClose');
+
+  function currentLang(){
+    return document.documentElement.lang === 'en' ? 'en' : 'fr';
+  }
+
+  function openSearch(){
+    searchBar.classList.add('open');
+    researchBtn.classList.add('on');
+    researchBtn.setAttribute('aria-expanded', 'true');
+    searchInput.focus();
+  }
+
+  function closeSearch(){
+    searchBar.classList.remove('open');
+    researchBtn.classList.remove('on');
+    researchBtn.setAttribute('aria-expanded', 'false');
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+  }
+
+  researchBtn.addEventListener('click', function(){
+    if (searchBar.classList.contains('open')) { closeSearch(); }
+    else { openSearch(); }
+  });
+
+  searchClose.addEventListener('click', closeSearch);
+
+  searchInput.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeSearch();
+  });
+
+  function runSearch(query){
+    var lang = currentLang();
+    searchResults.innerHTML = '';
+    query = query.trim().toLowerCase();
+    if (query.length < 2) return;
+
+    var nodes = document.querySelectorAll('.page h1, .page h2, .page h3, .page p, .page li, .page td, .page span.brand');
+    var matches = [];
+    nodes.forEach(function(el){
+      var text = el.textContent.replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      if (text.toLowerCase().indexOf(query) !== -1) {
+        var pageEl = el.closest('.page');
+        if (!pageEl) return;
+        matches.push({ el: el, pageId: pageEl.id, text: text });
+      }
+    });
+
+    if (matches.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'search-empty';
+      empty.textContent = translations[lang].search_no_results;
+      searchResults.appendChild(empty);
+      return;
+    }
+
+    matches.slice(0, 8).forEach(function(m){
+      var item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'search-item';
+      var snippet = m.text.length > 130 ? m.text.slice(0, 130) + '…' : m.text;
+      var pageLabel = translations[lang]['page_' + m.pageId] || m.pageId;
+      var labelEl = document.createElement('span');
+      labelEl.className = 'search-item-page';
+      labelEl.textContent = pageLabel;
+      item.appendChild(labelEl);
+      item.appendChild(document.createTextNode(snippet));
+      item.addEventListener('click', function(){
+        history.pushState(null, '', '#' + m.pageId);
+        showPage(m.pageId);
+        closeSearch();
+        setTimeout(function(){
+          m.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          m.el.classList.add('search-hit');
+          setTimeout(function(){ m.el.classList.remove('search-hit'); }, 1800);
+        }, 60);
+      });
+      searchResults.appendChild(item);
+    });
+  }
+
+  var searchDebounce;
+  searchInput.addEventListener('input', function(){
+    clearTimeout(searchDebounce);
+    var val = searchInput.value;
+    searchDebounce = setTimeout(function(){ runSearch(val); }, 150);
+  });
+})();
 </script>
 
 </body>
