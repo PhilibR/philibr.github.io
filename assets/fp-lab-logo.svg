@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 75" width="100%" height="100%">
+  <!-- Icône : Monogramme Électronique de Puissance (P + R inversé) -->
+  <g transform="translate(15, -3) translate(20.5,37) scale(1.13) translate(-20.5,-37)">
+    <!-- Tige centrale (Bus de puissance) -->
+    <line x1="25" y1="20" x2="25" y2="51" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+    
+    <!-- Côté droit : Boucle du P -->
+    <path d="M 25 20 C 37 20, 37 35, 25 35" fill="none" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Côté gauche : Boucle du R inversé -->
+    <path d="M 25 20 C 13 20, 13 35, 25 35" fill="none" stroke="#0b4fb0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Jambe du R inversé stylisée en diode -->
+    <path d="M 19 35 L 8 45" fill="none" stroke="#0b4fb0" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Barrière de potentiel (Diode) -->
+    <line x1="4" y1="42" x2="12" y2="48" stroke="#0b4fb0" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Connexion finale -->
+    <line x1="8" y1="45" x2="8" y2="51" stroke="#0b4fb0" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Nœud actif de sortie -->
+    <circle cx="8" cy="51" r="3" fill="#0b4fb0" />
+  </g>
+
+  <!-- Typographie & Titres en Noir & Bleu Intégrés -->
+  <text x="70" y="34" font-family="'Inter', sans-serif" font-weight="800" font-size="24" fill="#1a1a1a" letter-spacing="-0.02em">
+    F. <tspan fill="#0b4fb0">Philibert</tspan> Andriniriniaimalaza
+  </text>
+  
+  <!-- Titre académique passé en Noir Structuré pour plus de lisibilité et de sérieux -->
+  <text x="71" y="50" font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#1a1a1a" letter-spacing="0.01em">
+    Doctor-Engineer <tspan fill="#0b4fb0">|</tspan> Postdoctoral Researcher &amp; Lecturer
+  </text>
+</svg>
