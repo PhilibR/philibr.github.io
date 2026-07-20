@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>F. Philibert Andriniriniaimalaza — Postdoctoral Researcher, ISSTM</title>
+<title>F. Philibert — Postdoctoral Researcher, ISSTM</title>
 <meta name="description" content="Postdoctoral researcher in industrial electronics, intelligent control systems and hybrid renewable energy — ISSTM, University of Mahajanga.">
 <link rel="canonical" href="https://philibr.github.io/">
 <link rel="alternate" hreflang="en" href="https://philibr.github.io/">
@@ -1095,7 +1095,7 @@
       nav_home: "Fandraisana",
       nav_parcours: "Fianarana",
       nav_encadrement: "Fitarihana",
-      nav_publications: "Voka-pikarohana",
+      nav_publications: "Fikarohana",
       nav_news: "Vaovao",
       nav_gallery: "Sary",
       nav_contact: "Fifandraisana",
@@ -1253,6 +1253,13 @@
     });
     var si = document.getElementById('searchInput');
     if (si && translations[lang]) si.placeholder = translations[lang].search_placeholder;
+
+    var titles = {
+      en: 'F. Philibert — Postdoctoral Researcher, ISSTM',
+      fr: 'F. Philibert — Chercheur Postdoctoral, ISSTM',
+      mg: 'F. Philibert — Mpikaroka Postdoctoral, ISSTM'
+    };
+    document.title = titles[lang] || titles.en;
 
     var cvBtn = document.getElementById('cvDownloadBtn');
     if (cvBtn) {
